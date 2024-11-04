@@ -24,19 +24,19 @@ public class CarTest {
     @Test
     void TestForNeedEnergy_CarLocationLessDestLocation(){
         Car car = new PetrolCar(0,5);
-        Assertions.assertTrue(car.needsEnergy(25));
+        Assertions.assertTrue(car.needsEnergy(25), "Usage rate is really small");
     }
 
     @Test
     void TestForNeedEnergy_CarLocationMoreDestLocation(){
         Car car = new PetrolCar(25,5);
-        Assertions.assertTrue(car.needsEnergy(0));
+        Assertions.assertTrue(car.needsEnergy(0), "Usage rate is really small");
     }
 
     @Test
     void DoNotNeedEnergy(){
         Car car = new PetrolCar(0,5);
-        Assertions.assertFalse(car.needsEnergy(1));
+        Assertions.assertFalse(car.needsEnergy(1), "Usage rate is really high");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CarTest {
             car.driveTo(dest);
         }
         Assertions.assertEquals(dest, car.getLocation(), "Car didn't arrive at the expected location.");
-        Assertions.assertEquals(100 - UsageRate*(Math.abs(start-dest)), car.getEnergyValue());
+        Assertions.assertEquals(100 - UsageRate*(Math.abs(start-dest)), car.getEnergyValue(), "Wrong real usage rate");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CarTest {
             car.driveTo(dest);
         }
         Assertions.assertEquals(dest, car.getLocation(), "Car didn't arrive at the expected location.");
-        Assertions.assertEquals(100 - UsageRate*(Math.abs(start-dest)), car.getEnergyValue());
+        Assertions.assertEquals(100 - UsageRate*(Math.abs(start-dest)), car.getEnergyValue(), "Wrong real usage rate");
     }
 
 }
